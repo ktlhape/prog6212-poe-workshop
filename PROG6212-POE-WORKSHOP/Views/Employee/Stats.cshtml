@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ProjectLibrary.Project>
+@{
+    Layout = "_Layout";
+}
+
+<h2>Project Statistics</h2>
+
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    var arPrNames = []; // Labels
+    var arPrDuration = []; // data
+
+    @foreach (var p in Model)
+        {
+        @:arPrNames.push('@p.ProjectName');
+    @:arPrDuration.push(@p.Duration);
+    }
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: arPrNames,
+            datasets: [{
+                label: 'Projects',
+                data: arPrDuration,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+
+<div class="login-page">
+
+    @if(ViewBag.errorMsg != null){
+        
+       <script type="text/javascript">
+            window.onload = function () { alert("@ViewBag.errorMsg") }
+        </script>
+    }
+    <div class="form">
+        <form class="register-form">
+            <input type="text" placeholder="name" />
+            <input type="password" placeholder="password" />
+            <input type="text" placeholder="email address" />
+            <button>create</button>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+        </form>
+
+        <form class="login-form" action="Employee/VerifyLogin" method="post">
+            <input type="text" placeholder="employee no" name="txtEmpNo"/>
+            <input type="password" placeholder="password" name="txtPass"/>
+            <button type="submit">login</button>
+            <p class="message">Not registered? <a href="#">Create an account</a></p>
+        </form>
+    </div>
+</div>
